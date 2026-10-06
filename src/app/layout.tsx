@@ -18,7 +18,10 @@ const fontClass = {
   event: `${instrument.variable} ${outfit.variable}`,
 }[brand.variant];
 
+const siteUrl = "https://thebloomsbar.vercel.app";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: `${brand.name} | ${brand.location}`,
     template: `%s | ${brand.name}`,
@@ -27,8 +30,24 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${brand.name} | ${brand.location}`,
     description: brand.subhead,
+    url: siteUrl,
+    siteName: brand.name,
     locale: brand.country === "US" ? "en_US" : "en_CA",
     type: "website",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: `${brand.name} in ${brand.location}, ${brand.region}`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${brand.name} | ${brand.location}`,
+    description: brand.subhead,
+    images: ["/og.png"],
   },
 };
 
